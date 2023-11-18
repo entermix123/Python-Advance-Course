@@ -9,11 +9,12 @@ Course Content
 
 1. Lists as Stacks and Queues
 2. Tuples and Sets
-3. Multidimensional Lists
-4. Functions Advanced
-5. Error Handling
-6. File Handling
-7. Modules
-8. Exam Preparations
+3. Exercise Stacks, Queues, Tuples and Sets
+4. Multidimensional Lists
+5. Functions Advanced
+6. Error Handling
+7. File Handling
+8. Modules
+9. Exam Preparations
 
 © SoftUni – about.softuni.bg. Copyrighted document. Unauthorized copy, reproduction or use is not permitted.
