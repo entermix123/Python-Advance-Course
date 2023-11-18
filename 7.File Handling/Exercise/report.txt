@@ -1,0 +1,12 @@
+.html
+---index.html
+.js
+---index 43.js
+.pptx
+---demo.pptx
+.py
+---program new.py
+---python some.py
+.txt
+---log data.txt
+---notes.txt
