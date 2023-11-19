@@ -1,0 +1,42 @@
+1. File Opener
+
+You are given a file called text.txt with the following text:
+Create a program that opens the file. If the file is found, print 'File found'. If the file is not found, print 'File not found'.
+
+
+2. File Reader
+
+You are given a file called numbers.txt with the following content:
+Create a program that reads the numbers from the file. Print on the console the sum of those numbers.
+
+
+3. File Writer
+
+Create a program that creates a file called my_first_file.txt. In that file, write a single line with the content: 'I just created my first file!'
+
+
+4. File Delete
+
+Create a program that deletes the file you created in the previous task. If you try to delete the file multiple times, print the message: 'File already deleted!'.
+
+
+5. Word Count
+
+Write a program that reads a list of words from the file words.txt and finds how many times each of the words is contained in another file text.txt. Matching should be case-insensitive.
+The results should be written to other text files. Sort the words by frequency in descending order.
+Examples words.txt input.txt output.txt
+This is some random line
+This is the second line
+And this is the third one
+1
+2
+3
+4
+5
+quick is fault
+-I was quick to judge him, but it wasn't his fault.
+-Is this some kind of joke?! Is it?
+-Quick, hide here…It is safer.
+is - 3
+quick - 2
+fault - 1

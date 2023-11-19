@@ -1,0 +1,36 @@
+1. Global window
+
+This part will create a canvas file that will be responsible for the tk object. We will use the file to import the tk wherever it is needed:
+In "canvas.py" file, write the following:
+
+Now create a "main.py" file:
+The last thing we need, before we actually start, will be to create a "helpers.py" file with:
+
+
+2. Login and register
+
+Create a file called "authentication.py" and a directory called db with the files "user_credentials_db.txt" and "users.txt" for storing the data. Below, you can find the flow that should be implemented:
+The two buttons lead to different forms – the login form and the register form.
+Login:
+
+When a username and password are entered, it should check if such a username and password combination exists from the user credentials file. If so, let the user to the product screen (we will implement that later). If the username and/or password is invalid, a message should appear:
+"Invalid username/password"
+Register form: It should save the user's information to the file "users" as a dictionary (hint, look for json.dumps and how you can store complex objects in files) and the credentials in the "credentials" file. After that, it should render the user to the login page.
+Message for invalid username/password:
+The current implemented commit - link
+Here, you have some blurry pictures if you want to take a look at how it could be implemented:
+
+
+3. List all product
+
+Here, you can see how the grid should look like:
+This is the view. It should be rendered with data, fetched from products.py which you have to create.
+The file can look like this: The button should be bound to the product id on click. When the user "buys" some product, you should update the user file as well for the current user's products: After the user has bought an item, you should render the same view with the updated values for the product's quantity:
+You can view the code for this commit here
+
+
+4. BONUS
+
+• Validations to all of the fields and cases you can think of – last_name, first_name length, a unique username, password validation for length and special characters and etc.
+• Better "CSS" – to actually rearrange the grid and colors so that they provide a better user experience
+• Admin part for adding products – here you may change the "users.txt" structure to contain an "is_admin" property. A button can be rendered, for example "Add product", only if the user is admin. After that you should render a new view with a form for product data, add a picture for this product to the images folder. When a button for creating is clicked, you should open a file and add a new product to the file. Be careful – the data should be always consistent, do not miss some fields, otherwise, unexpected behavior could appear.
