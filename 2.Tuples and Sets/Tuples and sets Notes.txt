@@ -1,0 +1,120 @@
+Tuples are structures that are not mutable! Read only!
+
+-------------------------------------------------------------------------
+TUPLES:
+-------------------------------------------------------------------------
+
+Main usage is transmision of data fro one place to another. Usually between functionalities in big software projects.
+
+definition:
+
+t = (1, 2, 3)	# like list, but with '()' parantheses
+t[0] = 1		# iterable treu index
+
+can be defined like:
+
+t = 1, 2, 3 
+
+define tuple with one lement: t = (1, )
+
+------------------------------------------------------
+TWO MAIN METHODS WITH TULES:
+
+	1. .count() --> returns the number of times a specific value occurs in the tuple
+			
+		numbers = (1, 2, 1, 3, 1)
+
+		numbers.count(1) --> 3
+
+	2. .index --> return the index of the searched element
+
+		names = ('Pesho', 'Gosho', 'Gosho')
+	
+		names.index('Gosho') --> 1
+------------------------------------------------------
+
+----------------------------------
+UNPACKING TUPLES:
+
+	data = (1, 2, 3)
+	
+	x, y, z = data --> x = 1, y = 2, z = 3
+
+	x, y = data --> x = 1. y = (2, 3)	# if not enough elements are unpacked, the last element is tuple of the rest values
+
+----------------------------------
+MAKE TUPLE FROM INPUT:
+
+	a = tuple(map(int, input().split()))	# can be made with float, str, int if data is not in conflict
+----------------------------------
+
+
+----------------------------------------------------------------------------
+SETS:  https://www.freecodecamp.org/news/python-set-operations-explained-with-examples/
+----------------------------------------------------------------------------
+
+List of unique values !!! Mutable structures !!! Fast can be used for mathematical operations!
+
+ACTIONS WITH SETS:
+
+Definition:
+
+a = set([1, 2, 3, 4])
+b = set ([3, 4, 5, 6]) 
+
+Adding and removeing data to set:
+
+a.add(7) --> {1, 2, 3, 4, 7} if we add already included value, it does nothing. Same with .discard() method
+a.discard(7) -->  {1, 2, 3, 4}
+
+
+--------------------------------
+method: a.union(b) --> take unique values from a and b and create new set of unique values:
+--------------------------------
+a | b --> {1, 2, 3, 4, 5, 6}
+
+
+--------------------------------
+method: a.intersection(b) --> Intersection(сечение), find values that are in both sets and make set of them:
+--------------------------------
+a & b --> {3, 4}
+
+
+--------------------------------
+method: a.issubset(b) --> check if all values in b are in a
+--------------------------------
+a < b --> False
+
+
+--------------------------------
+method: a.issuperset(b) --> Superset, check if all values in a are in b
+--------------------------------
+a > b --> False
+
+
+--------------------------------
+method: a.difference(b) -- > Difference, take elements only that are different				MOST USED !!!
+--------------------------------
+a - b --> {1, 2}
+b - a --> {5, 6}
+
+
+--------------------------------
+method: a.symmetric_difference(b) --> take elements that are unique in both sets: (reverse intersection)
+--------------------------------
+a ^ b --> {1, 2, 5, 6}									MOST USED !!!
+
+
+--------------------------------
+Set comprehention:					same as lists but with curly brackets !!!
+--------------------------------
+nums = [1, 2, 3, 4, 4, 5, 6, 2, 1]
+unique = {num for num in nums} --> {1, 2, 3, 4, 5, 6}, not sorted, can be also {2, 4, 1, 3, 6, 5}
+
+if we want sorted set we have to use unique.sorted()
+
+
+
+
+
+

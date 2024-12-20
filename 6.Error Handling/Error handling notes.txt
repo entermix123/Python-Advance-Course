@@ -1,0 +1,205 @@
+info: https://www.tutorialspoint.com/python/python_exceptions.htm
+
+Try - Except: Handle different exceprions and don't break execution of the program !
+
+---------------------------------------------
+list1 = [1, 4, -5, 3, 10]
+
+try:
+    new_list = []
+    for x in range(len(list1)):
+        if list1[x] <= 0:
+            raise ZeroDivisionError		# division by zero error handling
+        else:
+            new_list.append(x/2)
+            
+except:
+    print('Exception handles')		# print custom error text
+---------------------------------------------
+
+Handling different error types:
+---------------------------------------------
+def simple_func():
+    raise TypeError
+    raise IndexError
+    raise some more errors
+
+
+try:
+    simple_func()
+except IndexError:
+    print('Index error - Exception handled')
+except TypeError:
+    print('Type error - Exception handled')
+---------------------------------------------
+
+
+---------------------------------------------
+def sum_odd_even_numbers(nums):
+    even_nums = 0
+
+    for num in nums:
+        if num % 2 == 0 and num != 0:
+            even_nums += num
+        elif type(num) != int:
+            raise TypeError('--Invalid_Data_Type--')            # set TypeError custom text
+        elif num == 0:
+            raise ArithmeticError('Invalid operation by 0')     # set ArithmeticError custom text
+    print(even_nums)
+
+
+try:                                        # try with function sum_odd_even_numbers() with input [3, 5, 6, 0]
+    sum_odd_even_numbers([3, 5, 6, 0])
+
+except TypeError as error:                  # set custom text as error object
+    print(f'Exception handled', error)      # print custom text and custom text form error object
+
+except ArithmeticError as error1:           # set custom text as error object
+    print(f'Exception handled', error1)     # print custom text and custom text form error object
+---------------------------------------------
+
+def hello():                # def function
+    raise AssertionError    # raise error
+
+
+try:                        # try function
+    hello()
+
+except AssertionError as error:     # set exception text as error object
+    print(error)                    # print error
+
+else:                                           # if there is no error
+    try:                                        # nested try
+        with open('file.log') as file:          # open file code
+            read_data = file.read()             # make variable read from file
+    except FileNotFoundError as file_error:     # if file is not found set error as a object
+        print(file_error)                       # print error object
+
+finally:                                        # finally executes with no condition
+    'some code'
+
+
+
+CREATING CUSTOM EXCEPTIONS:
+
+Simple example:
+------------------------------------------------------
+class CustomException(Exception):
+    pass
+
+
+try:
+    raise CustomException('This is my exception')
+
+except CustomException as error:
+    print(error)
+------------------------------------------------------
+
+Celsius calculator: --> more complicated exception
+------------------------------------------------------
+class FahrenheitError(Exception):       # make class for exception error
+    min_f = 32                          # set min value
+    max_f = 212                         # set max value
+
+    def __init__(self, f, *args):       # def start function
+        super().__init__(args)          # use super() function with min and max values
+        self.f = f                      # set user input to main value
+
+    def __str__(self):                  # set print function
+        return f'The {self.f} is not in a valid range {self.min_f, self.max_f}'  # return wanted output
+
+
+def fahrenheit_to_celsius(f: float) -> float:
+    if f < FahrenheitError.min_f or f > FahrenheitError.max_f:      # check if user input is in range
+        raise FahrenheitError(f)                                    # CUSTOM ERROR
+    return (f - 32) * 5 / 9                                         # return value in celsius
+
+
+value = input('Enter a temperature in Fahrenheit: ')                # user input
+
+try:                                                                # try case
+    f = float(value)                                                # make user input float
+except ValueError as error:                                         # make ValueError error object
+    print(error)                                                    # print error
+else:
+    try:                                                            # if no ValueError
+        result = fahrenheit_to_celsius(float(f))             # call function fahrenheit_to_celsius() with user input
+    except FahrenheitError as error:                         # make custom error as error object
+        print(error)                                         # print error object
+    else:
+        print(f'{f} Fahrenheit = {result:.4f} celsius')      # print result if input value in range
+-------------------------------------------------------------------------------------
+
+EXERCISE:
+-------------------------------------------------------------------------------------
+
+Blocks :
+
+1. Try		# go true code block, and if error accure go to except block
+2. Except		# executed when error in try block is raised
+3. Else:		# executed when try code is succesful
+4. Finaly		# execute no metter what
+
+More than one error can be cached with one except:
+
+try:
+	code....
+except (KeyError, TypeError) --> make errors in tuple.
+
+If we know the different errors, we can focus the problem code block
+
+If we want to create function for custom errors we have to inherit 'Exception' class:
+
+	class NameTooShortError(Exeption): 
+
+e-mail validator: can be more short 
+-----------------------------------------------------------------------------------------
+from re import findall      # import regex findall function
+
+
+class NameTooShortError(Exception):     # create class for too short name
+    pass
+
+
+class MustContainAtSymbolError(Exception):      # create class for too short name
+    pass
+
+
+class InvalidDomainError(Exception):            # create class for wrong domain
+    pass
+
+
+class MoreThanOneAtSymbolError(Exception):      # create class for existing @
+    pass
+
+
+class InvalidNameError(Exception):              # create class for wrong name
+    pass
+
+
+pattern_name = r'[\w+\.]+'      # regex for name
+pattern_domain = r'\.[a-z]+'    # regex for domain
+MIN_LENGTH = 4                  # minimum characters for name
+valid_domains = ['.com', '.bg', '.org', '.net']     # valid domains
+
+email = input()                 # user input
+while email != 'End':           # while input is different of 'End'
+    try:                        # try for errors
+        if email.count('@') > 1:                                                # if @ in input is more than 1
+            raise MoreThanOneAtSymbolError('Email should contain only one @!')  # raise error
+        if len(email.split('@')[0]) <= MIN_LENGTH:                              # if length of the name is less than 4 chars
+            raise NameTooShortError('Name must be more than 4 characters')      # raise error
+        if findall(pattern_name, email)[0] != email.split('@')[0]:              # if name do not match name regex
+            raise InvalidNameError('Name can only contain numbers, letters, underscores and dots')      # raise error
+        if '@' not in email:                                                    # if @ is not in email
+            raise MustContainAtSymbolError('Email must contain @')              # raise error
+        if findall(pattern_domain, email)[-1] not in valid_domains:             # if domain is not in valid domains
+            raise InvalidDomainError(f'Domain must be one of the following: {", ".join(valid_domains)}')    # raise error
+
+    except IndexError:              # if error not in error classes, raise index error
+        print('Invalid email!')     # print Invalid error
+
+    else:                           # if mail is valid
+        print('Email is valid')     # print email is valid
+    email = input()                 # user input for while loop
+----------------------------------------------------------------------------------------------------

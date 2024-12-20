@@ -1,0 +1,178 @@
+MODULES:
+
+	collision is when name of variable and imported module or function are the same. Better to rename our custom variable or function name tahn imported from build in module!!!
+
+fom math impoert *  --> import all functions from math
+
+logarithm is oposite of gradation (степенуване)
+
+External modules:
+
+	PIP manager --> Preferred Installer Program
+
+	Check Pandas!
+
+Check requirements files for install modules! We can create requirements file:
+
+
+Command in terminal to install items from reqirements.txt:
+		-------------------------------
+terminal--> pip install -r requirements.txt
+		-------------------------------
+
+Command in terminal to generate modules for reqirements.txt:
+		-----------------------------
+terminal--> pip freeze > requirements.txt
+		-----------------------------
+
+
+Most used modules:
+	
+	Pandas, Requests, Scrapy, Pillow, Django, Numpy, Djinja2, 
+
+
+	1. Requests Module:
+	
+		Summary of what it does: Make HTTP requests
+		GitHub Stars: 46,821
+		Creator:  Kenneth Reitz
+		Library Link: https://pypi.org/project/requests/
+		GitHub Link: https://github.com/request/request
+
+
+	2. Django Framework:
+
+		Summary of what it does: Build web applications
+		Creator:  Django Software Foundation
+		GitHub Stars: 62,117
+		Documentation: https://docs.djangoproject.com/
+		Official Website: https://www.djangoproject.com/
+		GitHub Link: https://github.com/django/django
+
+
+	3. Flask:
+
+		Summary of what it does: Build web applications
+		Creator:  Armin Ronacher
+		GitHub Stars: 57,819
+		Documentation: https://flask.palletsprojects.com/
+		Official Website: https://palletsprojects.com/
+		GitHub Link: https://github.com/pallets/flask/
+
+
+	4. Jinja 2
+
+		Jinja is a fast, expressive, extensible templating engine. Special placeholders in the template allow writing code 		similar to Python syntax. Then the template is passed data to render the final document.
+
+		It includes:
+
+		Template inheritance and inclusion.
+		Define and import macros within templates.
+		HTML templates can use autoescaping to prevent XSS from untrusted user input.
+		A sandboxed environment can safely render untrusted templates.
+		AsyncIO support for generating templates and calling async functions.
+		I18N support with Babel.
+		Templates are compiled to optimized Python code just-in-time and cached, or can be compiled ahead-of-time.
+		Exceptions point to the correct line in templates to make debugging easier.
+		Extensible filters, tests, functions, and even syntax.
+
+
+	5. Beautifulsoup4
+
+		Summary of what it does: Scrape Web pages
+		Creator:  Leonard Richardson
+		GitHub Stars: 4,474
+		Documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+		GitHub Link: https://github.com/wention/BeautifulSoup4
+
+
+	6. Selenium
+
+		Summary of what it does: Performing Browser Automations
+		GitHub Stars: 22,703
+		Documentation: https://www.selenium.dev/documentation/
+		Official Website: https://www.selenium.dev/
+		GitHub Link: https://github.com/SeleniumHQ/selenium
+
+DATA Science:
+
+	7. Numpy Python Module
+
+		Summary of what it does: Performing Mathematical Calculations
+		GitHub Stars: 19,519
+		Documentation: https://numpy.org/doc
+		Official Website: https://numpy.org/
+		GitHub Link: https://github.com/numpy/numpy
+
+
+	8. Pandas Python Module
+
+		Summary of what it does: Reading and Working with data frames
+		GitHub Stars: 32,548
+		Documentation: https://pandas.pydata.org/pandas-docs/stable/
+		Official Website: https://pandas.pydata.org/
+		GitHub Link: https://github.com/pandas-dev/pandas
+
+
+	9. Matplotlib Python Module
+
+		Summary of what it does: Data visualization
+		GitHub Stars: 14,975
+		Documentation: https://matplotlib.org/stable/api/index
+		Official Website: https://matplotlib.org/
+		GitHub Link: https://github.com/matplotlib/matplotlib
+
+
+	10. MySQL Python
+		
+		DB Module
+
+
+Graphical User Interfaces in Python
+
+	11. PyQt5 Module
+
+		Summary of what it does: Building Graphical User Interface.
+		GitHub Link: https://github.com/PyQt5
+
+
+CUSTOMIZED MODULES:
+
+	Every file can be used as a module. If we create function in file modules that is called functionx, we can import it in other file lke: from modules import functionx and use the function
+
+
+develop small aplication Tkinter!
+
+WE CAN CONVERT OUR APP TO EXE WITH PYINSTALLER: https://pyinstaller.org/en/stable/
+
+application location in Unisoft/Advanced September 2022/9.Modules/Exercise
+
+IMPORTANT MOMENT WHEN WE NEED TO DECREASE ITEM QUANTITY IN BUYNG CYCLE:
+-------------------------------------------------------------------------
+    for item_name, item_info in info.items():               # iterate true info and take name and info dict
+        # for opening images --> terminal pip install Pillow
+        item_img = ImageTk.PhotoImage(Image.open(item_info["image"]))   # take image from products_data.json["image"] path
+        images.append(item_img)                                         # save current image in list to present all
+
+        frame.create_text(x, y, text=item_name, font=("Cosmic Sans MS", 15))    # create text to every image
+        frame.create_image(x, y + 100, image=item_img)                          # create image frame for every image
+
+        if item_info["quantity"] > 0:                       # if quantity is more than 0
+            color = "green"                                 # set green color of the text
+            text = f'In stock: {item_info["quantity"]}'     # set the text
+
+            item_btn = Button(              # set button to buy
+                root,                       # set root for button
+                text="Buy",                 # set text
+                font=("Comic Sans MS", 12), # set font
+                bg="green",                 # set back ground color
+                fg="white",                 # set front ground color
+                width=5,                    # set width
+                # key moment --> call lambda and save current item name
+     -------->  command=lambda z=item_name: buy_product(z)      # after button is triggered, quantity is decreased by 1
+            )
+-------------------------------------------------------------------------
+
+FULL PATH OF THE APP IS: D:\Python Projects\Python Advanced SoftUni September 2022\9.Modules\Exercise\buying_page.py
+
+	

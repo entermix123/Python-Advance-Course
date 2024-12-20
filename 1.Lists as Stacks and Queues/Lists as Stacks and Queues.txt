@@ -1,0 +1,68 @@
+What is Stack? (стек)
+
+Linear structure of data with LIFO methodology - Last in First out
+
+Standart operations:
+
+	Add element in stack --> push		        # difficulty of 1 is one or few operations
+
+	remove last element from the stack --> pop() popleft() # difficulty of 1 is one or few operations
+
+	check last element in the stack --> peek	  # difficulty of 1 is one or few operations
+
+	check if the stack is empty --> count/size  # if count > 0, pop... or is_empty(s) -> count == 0 # difficulty of 1 operation
+
+
+Attention when use pop() function. Check if stack is empty before pop().
+
+What is Queues? (опашка)
+
+Linear structure of data with FIFO methodology - First in First out
+
+	There are priority queues !!!
+
+Two main actions with queues:
+
+	Add element to the 0 index of the list --> enqueue
+	
+	remove index prom the end  of the list --> dequeue
+
+There are double-linked lists that can be used as queue and stack !!! Can be removed or add first index or last index (head or queue) !!! 'deque' - double ended que - not iterable by index
+
+----------------------------
+from collections import deque		MOST USED !!!!
+
+q = deque([1, 2, 3])
+q.popleft()			# fast execution of removing zero index
+q.append()			# fast execution of adding variable to last index
+----------------------------
+q = [1, 2, 3]
+q.pop(0) is very slow because reorder all other elements with one to the left
+
+ROTATE method:
+
+	q.rotate(-1) --> q = [2, 3, 1]
+
+----------------------------
+from collections import deque
+
+user = input()
+que = deque(x for x in user)
+que.pop()
+que.popleft()
+----------------------------
+
+----------------------------
+Remove first element and add it to the end of the deque or list:
+
+	from collections import deque
+	que = deque()
+	que = [x for x in input().split()]
+	rotate = que.popleft()
+	que.append(rotate)
+
+see advanced september 2022 Lists as Stacks and Queues/Exercise/5_truck_tour
+----------------------------
+
+
+

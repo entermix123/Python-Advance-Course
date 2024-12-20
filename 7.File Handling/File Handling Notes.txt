@@ -1,0 +1,281 @@
+1. Opening File:
+
+	can be used absolute (full) path and relative path (local). On Windows OS we have to check separator slashes between dirs and change them if needed! 
+	
+	Example absolute path:
+
+	D:\Python Projects\Python Advanced SoftUni September 2022\7.File Handling\1_file_opener.py
+								|
+								|
+								V
+	D:/Python Projects/Python Advanced SoftUni September 2022/7.File Handling/1_file_opener.py
+
+	
+	f = open(filename, mode)
+
+	Modes:
+
+	r: open an existing file for a read operation. 
+	w: open an existing file for a write operation. If the file already contains some data then it will be overridden but if the 			file is not present then it creates the file as well. clear file !!! careful !!! Create if not exist!
+	a:  open an existing file for append operation. It won’t override existing data. Create if do not exist ! 
+ 	r+: To read and write data into the file. The previous data in the file will be overridden.
+	w+: To write and read data. It will override existing data. clear file !!! careful !!!
+	a+: To append and read data from the file. It won’t override existing data.
+
+
+	 w - open for writing, truncating the file first
+	 x - create a new file and open it for writing
+	 a - open for writing, appending to the end of the file if it exists
+	 t - text mode (default)
+	 b - binary mode
+	 + - open a disk file for updating (reading and writing)
+
+
+	FILE OPENER:
+
+	example relative path (is the same dir):
+
+	current_file = open('1_file_open.py', 'r')      # save current file in variable
+	print(current_file.read())                      # print current file with method .read()
+
+	-----------------------------------------
+	try:
+		text_file = open('text.txt', 'r')
+		print("File found")
+	except FileNotFoundError:
+		print("File not found")
+
+	-----------------------------------------
+	read() --> read bites of the line:
+
+	file = open("asd.txt") # 'Hello, SoftUni!'
+	print(file.read(2)) # 'He'
+	print(file.read(2)) # 'll'
+	print(file.read(2)) # 'o,'
+	print(file.read()) # ' SoftUni!'
+
+	-----------------------------------------
+	readline() --> read line from the file:
+
+	file = open("text.txt") # 'Hello, SoftUni!'
+	print(file.readline(5)) # 'Hello'
+	print(file.readline(5)) # ' ,Sof'
+	print(file.readline(5)) # 'tUni!'
+	print(file.readline()) # '' Goes to the new line
+	print(file.readline(5)) # 'Second' Print second line
+
+	-----------------------------------------
+	readlines() --> Read the remaining lines from the file object and returns them as a list
+
+	file = open("text.txt")
+	print(file.readlines())
+	# ['Every\n', 'Word\n', 'is\n', 'line']
+
+
+	Keep in mind every line in the file treats the new line symbol as a string
+
+	file = open("text.txt")
+	lines = file.readlines()
+	[print(line, end="") for line in lines]
+
+	-----------------------------------------
+	looping over a file object:
+
+	 To return all lines from a file you can loop over it
+	 More memory efficient and fast manner
+
+	file = open('D:\\python.txt', 'r')
+	for line in file:
+    		print(line, end="")
+	# print every line in a new line
+
+WRITE FUNCTIONS:
+	
+	 w - open for writing, truncating the file first
+	 x - create a new file and open it for writing
+	 a - open for writing, appending to the end of the file if it exists
+
+Examples:	
+---------------------------------------------------------------------------------
+# lines = ['Readme', 'This is my Github repository']      # input
+#
+# with open('readme.txt', 'w') as file:                   # create file
+#     for line in lines:                                  # iterate true input
+#         file.write(line)                                # write input into file
+#         file.write('\n')                                # new line after every input line
+
+
+# more_lines = ['', 'append text files', 'the end']           # next input
+#
+# with open('readme.txt', 'a') as file:                       # open file
+#     file.write('\n'.join(more_lines))                       # append next input
+
+
+# def write_data_to_file(file, mode):                     # define function write
+#     current_file = open(file, mode)                     # open or create file
+#     current_file.write('''This is just example!:\n      # write file with info
+#                        First line,
+#                        second line,
+#                        third line,
+#                        end line !!!''')
+# 
+# 
+# write_data_to_file('new_file_example.txt', 'w')         # call function with file name and mode
+
+
+# list1 = ['This is example 1 \n', 'This is example 2 \n', 'This is example 3 \n']    # input
+# 
+# with open('new_file_example1', 'w') as file:                                        # create file
+#     file.write('list content \n')                                                   # write first line
+#     file.writelines(list1)                                                          # write input
+
+
+# with open('example3.txt', 'a') as file:             # open or create file
+#     file.write('\n Append example')                 # append info in it
+--------------------------------------------------------------------------------
+
+CLOSING FUNCTIONS: close()
+
+	Used for finishing the file. After closing the file cannot be opened or modified! Attemt to be opened after closing return error! Replaced with 'with' statement in the beggining!!!
+
+------------------------------------------------------------------------------
+# list1 = ['This is example 1 \n', 'This is example 2 \n', 'This is example 3 \n']    # input
+#
+# file = open('text.txt', 'w')      # create file\open file
+#
+# for el in list1:                  # iterate true file
+#     file.write(el)                # write input
+#
+# file.close()                      # close file
+
+Instead we use 'with' statement to ignore close():
+
+# list1 = ['This is example 1 \n', 'This is example 2 \n', 'This is example 3 \n']    # input
+# 
+# with open('text.txt', 'w') as file:     # create file\open file
+#     file.write('list content \n')       # add first line
+#     file.writelines(list1)              # add input
+-----------------------------------------------------------------------------
+
+
+WITH STATEMENT: most used when operate with files
+
+Class Example:
+-----------------------------------------------------------------------------
+# class MessageWriter(object):                    # def tha class
+# 
+#     def __init__(self, file_name):              # autostart function
+#         self.file_name = file_name              # connect file name
+# 
+#     def __enter__(self):                        # enter file function
+#         self.file = open(self.file_name, 'w')   # open\create file
+#         return self.file                        # return file
+# 
+#     def __exit__(self, *args):                  # exit function
+#         self.file.close()                       # close file
+# 
+# 
+# with MessageWriter('SoftUni.txt') as file:          # call class
+#     file.write('Hello SoftUni \nClass Example')     # add info to file
+----------------------------------------------------------------------------
+
+create file:
+----------------------------------------------------------------------------
+# file_path = 'text1.txt'                       # create variable with file name
+#
+# content = 'I just created my first file'      # input
+#
+# with open('text1.txt', 'w') as file:          # open/create file
+#     file.write(content)                       # add content to file
+---------------------------------------------------------------------------
+
+Remove file:
+
+---------------------------------------------------------------------------
+import os
+
+-----------------
+# file_path = 'readme123.txt'     # specify file
+#
+# if os.path.exists(file_path):   # if file exist
+#     os.remove(file_path)        # delete file
+-------------------
+
+-------------------
+# file_path = 'readme123.txt'       # specify file path and name
+# try:                              # try check if possible
+#     os.remove(file_path)          # remove file
+#     print('File removed!')        # print if file is removed
+# except FileNotFoundError as err:  # if file do not exist raise error
+#     print(err)                    # print error
+-------------------
+
+IMPORT OS:
+r"""OS routines for NT or Posix depending on what system we're on.
+
+This exports:
+  - all functions from posix or nt, e.g. unlink, stat, etc.
+  - os.path is either posixpath or ntpath
+  - os.name is either 'posix' or 'nt'
+  - os.curdir is a string representing the current directory (always '.')
+  - os.pardir is a string representing the parent directory (always '..')
+  - os.sep is the (or a most common) pathname separator ('/' or '\\')
+  - os.extsep is the extension separator (always '.')
+  - os.altsep is the alternate pathname separator (None or '/')
+  - os.pathsep is the component separator used in $PATH etc
+  - os.linesep is the line separator in text files ('\r' or '\n' or '\r\n')
+  - os.defpath is the default search path for executables
+  - os.devnull is the file path of the null device ('/dev/null', etc.)
+
+
+
+EXERCISE:
+
+File manipulator:
+---------------------------------------------------------------------------------
+import os
+while True:     # create loop for user input
+
+    command, *info = input().split('-')     # split user input by '-'
+
+    if command == 'End':                    # if command is 'End' stop the loop
+        break
+
+    if command == 'Create':                 # if command is 'Create'
+        file = open(info[0], 'w')           # create file
+        file.close()                        # close() --> save file
+
+    if command == 'Add':                    # if command is 'Add'
+        with open(info[0], 'a') as file:    # create file
+            file.write(f'{info[1]}\n')      # write content in it and close() --> 'with open(...)' also closes (save) file
+
+    if command == 'Replace':                        # if command is 'Replace'
+        try:                                        # Try to execute
+            with open(info[0], 'r') as file:        # open file
+                text = file.read()                  # read lines in file and make string text
+
+            text = text.replace(info[1], info[2])     # replace new value by old value and save string
+
+            with open(info[0], 'w') as file:                    # open to write
+                file.write(text)                                # write text as a string
+
+        except FileNotFoundError:                               # if error occur
+            print('An error occurred')                          # print custom error
+
+    if command == 'Delete':                     # if command is 'Delete'
+        try:                                    # try
+            os.remove(info[0])                  # delete file
+        except FileNotFoundError:               # if file is not found
+            print('An error occurred')          # print custom error
+
+# input1
+# Create-file.txt
+# Add-file.txt-First Line
+# Add-file.txt-Second Line
+# Replace-random.txt-Some-some
+# Replace-file.txt-First-1st
+# Replace-file.txt-Second-2nd
+# Delete-random.txt
+# Delete-file.txt
+# End
+-----------------------------------------------------------------------------------------------------

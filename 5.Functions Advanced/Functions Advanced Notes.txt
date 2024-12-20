@@ -1,0 +1,305 @@
+
+
+1. Packing Arguments:
+
+	
+
+	------
+	*args	-	packing arguments into tuple and dictionary
+	------
+
+	TUPLE, LISTS:
+
+	def some_func(*args):
+		print(args)
+
+	some_func(1, 2, 3) --> (1, 2 ,3)
+	some_func(danio, joro) --> (danio, joro)
+
+	--------
+	**kwargs
+	--------
+
+	DICTIONARY:
+	
+	def gteer_me(**kwargs):
+		for key, value in kwargs.items():
+			print(f'{value}, {key}')
+
+	gteer_me(Peter='Hello', George='Bye')
+	# Hello Peter
+	# Bye George
+
+	---------------------------------------
+	The function requires atleast one argument:
+
+	def some_func (arg1, *rest_args):
+		print(arg1 + sum(rest_args))
+
+	some_func(5, 5, 10) # 20
+	some_func() # Error
+
+	--------------------------------------
+	The function uses 1 argument and packed others
+
+	some_func(fargs, *args, **kwargs)
+		
+	
+2. Unpacking arguments:
+
+	list = [1, 2, 3, 4, 5]
+
+	a, *_, e = list	-->	a = 1, e = 5 # take first and last element!
+
+
+	
+	*  - We can use * to unpack the list so that all elements of it can be passed as different 		parameters
+
+	** - And we can use ** to unpack a dictionary, so all of its elements are passed as 			keyworded arguments
+
+	----------------
+	Unpacking Lists:
+	----------------
+
+	Note that the length of the list, that you unpack, must be the same as the number of 			parameters in the function
+
+	def print_nums(a, b, c):
+		print(a, b, c)
+	nums = [1, 2, 3]
+	print_nums(*nums) # 1 2 3
+
+	----------------
+	Unpacking Dictionary:
+	----------------
+
+	▪ Note that the keys of the dictionary must match the names of the parameters of the unction
+
+	▪ The order of the keys in the dictionary does not matter
+
+	def some_func(name, age):
+		print(f"{name} is {age} years old")
+	person = {'age': 20, 'name': "Peter"}
+	some_func(**person) # Peter is 20 years old
+
+Sorted Function:
+
+	
+	LIST:
+	------------------------------------------------
+
+	numbers = [3, 6, 8, 12, 34, 52]
+	print(sorted(numbers, key=lambda x: x % 2 == 0)) --> odd number first, after even: [3, 6, 8, 12, 34, 52]
+	print(sorted(numbers, key=lambda x: x % 2)	 --> even numbers first, after odd: [6, 8, 12, 34, 52, 3]
+	------------------------------------------------
+
+	matrix = [[1, 20], [1, -30], [3, 10]]
+	print(sorted(matrix, key=lambda x: max([abs(i) for i in x]))) --> sort of max, ascending.
+	# [[3, 10], [1, 20], [1, -30]]
+	------------------------------------------------
+
+
+	
+	DICTIONARY:
+	------------------------------------------------
+
+	dictionary = {'key1': value1, 'key2': value2, ...}
+
+	sorted_dictionary = sorted(dictionary.items(), key=lambda x: x[0]) ascending by key with lambda anonymous function
+
+	sorted_dictionary = sorted(dictionary.items(), key=lambda x: -x[0]) descending by key with lambda anonymous function
+
+	sorted_dictionary = sorted(dictionary.items(), key=lambda x: x[1]) ascending by value with lambda anonymous function
+
+	sorted_dictionary = sorted(dictionary.items(), key=lambda x: -x[1]) descending by value with lambda anonymous function
+
+	sorted_dictionary = sorted(dictionary.items(), key=lambda x: (x[0], x[1])) ascending by key and value with lambda anonymous 		function
+
+	sorted_dictionary = sorted(dictionary.items(), key=lambda x: (-x[0], -x[1])) descending by key and value with lambda 			anonymous function
+
+	sorted_dictionary = sorted(dictionary.items(), key=lambda x: (x[0], -x[1])) ascending by key, descending by value with 			lambda anonymous function
+	
+	sorted_dictionary = sorted(dictionary.items(), key=lambda x: (-x[0], x[1])) descending by key, ascending by value with 			lambda anonymous function
+
+	
+NESTED FUNCTIONS:
+
+	
+	Reasons: protection of global influence - capsulation
+
+	--------------------------------------------------------------------------------------------------------
+	def has_permission(page):               # def global function
+    		def permission(username):           # def internal function
+        		if username.lower() == 'admin':                         # if lower case input is 'admin'
+            		return f'{username} has right to open {page}'       # return result
+        		else:
+            		return f'{username} does not have right to open {page}'  # else return result
+
+    		return permission       # return as a function with no brackets and ask for username from input -> row 12 								IMPORTANT !!!
+
+
+	check_name_input = has_permission('Admin page')     # ask global function for page
+	print(check_name_input('aDmIN'))                    # print variable with nested function of username
+	--------------------------------------------------------------------------------------------------------
+
+When we user functions without brackets -> if we want to call the function and apply it somewehre in the code. but dont execuet!
+
+	
+RECURSION:	To get more info because is important! MANDATORY IS TO CREATE BOTTOM - BASE CASE (EXIT CONDITION)!
+
+A function that ask for itself is recursion and can be used for cycles in range with condition:
+
+	# First step of the recursion logic is to go from the highest number to zero or base case and then start again to the higher number.
+
+	https://www.scaler.com/topics/python/recursion-in-python/
+
+	Conditions recursion:
+		----------------------
+		def func1(a):
+    			if 0 < a <= 5:
+        			print(a)
+        			a += 1
+        			func1(a)
+
+
+		func1(1)
+		---------------------
+	
+
+	Factorials:
+	1! = 1
+	2! = 2 x 1 = 2
+	3! = 3 x 2 x 1 = 6
+	4! = 4 x 3 x 2 x 1 = 24
+	5! = 120
+	6! = 720
+	7! (Find Factorial of 7?) = 7 x 6 x 5 x 4 x 3 x 2 x 1 = 5040
+	...
+	
+		-------------------------------------
+
+		def recur_factorial(n):
+    			if n <= 1:          # base case !!! 
+        			return n
+
+    			result1 = n * recur_factorial(n - 1)
+   			print(f'recur_factorial({n}) = {result1}')
+
+    			return result1
+
+
+
+		print(recur_factorial(5))
+		-------------------------------------
+
+	MOST FAMOUS RECURSION PROBLEM IS QUEEN RECURSION - 92 WAYS
+
+
+
+Comprehension with IF - ELSE is ternary operator (тернарен оператор) - specific synatax:
+
+	[x IF condition1 ELSE condition2 for x in data]
+
+Comprehension with only one condition (IF) is placed at the end of the comprehension:
+
+	[x for x in data IF condition1]
+
+
+Filtering of even and odd numbers:
+
+	--------------------------------------
+
+	def even_odd_filter(**numbers):
+    		dict1 = {}
+    		if 'odd' in numbers:
+        		# numbers['odd'] = [n for n in numbers['odd'] if n % 2 == 1]              # comprehension for odd
+        		numbers['odd'] = list(filter(lambda x: x % 2 == 1, numbers['odd']))
+
+    		if 'even' in numbers:
+        		# numbers['even'] = [n for n in numbers['even'] if n % 2 == 0]          # comprehension for even
+        		numbers['even'] = list(filter(lambda x: x % 2 == 0, numbers['even']))   # filtering of even numbers with lambda
+
+    		return dict(sorted(numbers.items(), key=lambda x: -len(x[1])))              	# sorting by value descending
+
+
+	print(even_odd_filter(odd=[1, 2, 3, 4, 10, 5], even=[3, 4, 5, 7, 10, 2, 5, 5, 2],))
+	print(even_odd_filter(odd=[2, 2, 30, 44, 10, 5],))
+	-------------------------------------
+ 
+
+Coprehension for nested functions:
+	---------------------------------------------------------------------------------
+	def func_executor(*funcs_data):
+    		
+   		result = [f'{func.__name__} - {func(*args)}' for func, args in funcs_data]  # comprehension
+    		return '\n'.join(result)
+
+		# result = []								# second solution - long written
+    		# for func, args in funcs_data:
+    		#     result.append(f'{func.__name__} - {func(*args)}')
+    		# return '\n'.join(result)
+
+
+	def sum_numbers(num1, num2):
+    		return num1 + num2
+
+
+	def multiply_numbers(num1, num2):
+    		return num1 * num2
+
+
+	print(func_executor( (sum_numbers, (1, 2)), (multiply_numbers, (2, 4)) ))
+	--------------------------------------------------------------------------------
+
+CLOSURE FUNCTIONS (nested functions):
+
+	--------------------------------------------------------------------------------
+	a = 5
+
+
+	def greeting_closure():     	# main function
+    		global a                # variable 'a' is out of the main function so we specify the path with 'global varname'
+    		text = 'Hi'
+    		a += 5
+
+    		def add_my_name_is():   # every information in main function is available for the inner function !!!
+        		nonlocal text     # if we want to modify variable in main function, specify the path with 'nonlocal varname'
+
+        		text += ', my name is'  # modifying the 'text' variable
+
+    		add_my_name_is()
+    		print(text)
+    		print(a)
+
+
+	greeting_closure()
+	-------------------------------------------------------------------------------
+
+
+IMPORTANT MOMENT WHEN WE NEED TO DECREASE ITEM QUANTITY IN BUYNG CYCLE:
+-------------------------------------------------------------------------
+    for item_name, item_info in info.items():               # iterate true info and take name and info dict
+        # for opening images --> terminal pip install Pillow
+        item_img = ImageTk.PhotoImage(Image.open(item_info["image"]))   # take image from products_data.json["image"] path
+        images.append(item_img)                                         # save current image in list to present all
+
+        frame.create_text(x, y, text=item_name, font=("Cosmic Sans MS", 15))    # create text to every image
+        frame.create_image(x, y + 100, image=item_img)                          # create image frame for every image
+
+        if item_info["quantity"] > 0:                       # if quantity is more than 0
+            color = "green"                                 # set green color of the text
+            text = f'In stock: {item_info["quantity"]}'     # set the text
+
+            item_btn = Button(              # set button to buy
+                root,                       # set root for button
+                text="Buy",                 # set text
+                font=("Comic Sans MS", 12), # set font
+                bg="green",                 # set back ground color
+                fg="white",                 # set front ground color
+                width=5,                    # set width
+                # key moment --> call lambda and save current item name
+     -------->  command=lambda z=item_name: buy_product(z)      # after button is triggered, quantity is decreased by 1
+            )
+-------------------------------------------------------------------------
+
+FULL PATH OF THE APP IS: D:\Python Projects\Python Advanced SoftUni September 2022\9.Modules\Exercise\buying_page.py
+
